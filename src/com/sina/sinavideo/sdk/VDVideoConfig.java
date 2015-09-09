@@ -45,7 +45,7 @@ public class VDVideoConfig {
         eVDDecodingTypeSoft, eVDDecodingTypeBothAuto, eVDDecodingTypeBothManual, eVDDecodingTypeBoth, eVDDecodingTypeHardWare
     }
 
-    public static eVDDecodingType mDecodingType = eVDDecodingType.eVDDecodingTypeBoth;
+    public static eVDDecodingType mDecodingType = eVDDecodingType.eVDDecodingTypeSoft;
 
     public final static String[] mDecodingPlayerDesc = {"兼容播放器", "高级播放器"};
     public final static String mDecodingPlayerTitle = "切换播放器";

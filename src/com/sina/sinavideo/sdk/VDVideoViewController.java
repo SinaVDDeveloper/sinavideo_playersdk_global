@@ -568,17 +568,8 @@ public class VDVideoViewController implements OnVideoOpenedListener,
 
 		// 初始化转屏部分
 		VDVideoFullModeController.getInstance().init(context);
-		if (VDVideoConfig.mDecodingType == eVDDecodingType.eVDDecodingTypeSoft) {
-			controller.mVideoView = new VideoView(context);
-		} else if (VDVideoConfig.mDecodingType == eVDDecodingType.eVDDecodingTypeHardWare) {
-			controller.mVideoView = new VideoViewHard(context);
-		} else {
-			if (VDSharedPreferencesUtil.isDecodingTypeFFMpeg(context)) {
-				controller.mVideoView = new VideoView(context);
-			} else {
-				controller.mVideoView = new VideoViewHard(context);
-			}
-		}
+		// 全格式方式的时候，没法使用硬解码方式了
+		controller.mVideoView = new VideoView(context);
 
 		// 事件监听
 		controller.mVideoView.setOnCompletionListener(controller);
