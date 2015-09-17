@@ -37,7 +37,7 @@ import com.sina.sinavideo.coreplayer.splayer.MediaPlayer.OnVideoOpenedListener;
 import com.sina.sinavideo.coreplayer.splayer.MediaPlayer.OnVideoSizeChangedListener;
 import com.sina.sinavideo.coreplayer.splayer.VideoView;
 import com.sina.sinavideo.coreplayer.splayer.VideoViewHard;
-import com.sina.sinavideo.sdk.VDVideoConfig.eVDDecodingType;
+//import com.sina.sinavideo.sdk.VDVideoConfig.eVDDecodingType;
 import com.sina.sinavideo.sdk.VDVideoViewListeners.OnClickPlayListener;
 import com.sina.sinavideo.sdk.VDVideoViewListeners.OnClickRetryListener;
 import com.sina.sinavideo.sdk.VDVideoViewListeners.OnDLNALinearLayoutListener;
