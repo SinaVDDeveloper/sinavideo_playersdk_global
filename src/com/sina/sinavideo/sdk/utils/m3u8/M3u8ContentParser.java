@@ -153,9 +153,9 @@ public class M3u8ContentParser {
 				}
 			}
 
-			if (idx == 0) {
-				mListener.onError(ERROR_NO_CONTENT);
-			}
+			// if (idx == 0) {
+			// mListener.onError(ERROR_NO_CONTENT);
+			// }
 			if (m3u8Type == M3u8Content.M3U8_TYPE_RESOLUTION
 					&& resolutionData != null) {
 				return resolutionData;
