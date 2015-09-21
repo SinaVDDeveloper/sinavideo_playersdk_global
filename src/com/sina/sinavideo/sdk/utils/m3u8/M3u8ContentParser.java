@@ -43,26 +43,21 @@ import android.os.AsyncTask;
  */
 public class M3u8ContentParser {
 
-	private static final String TAG = "M3u8ContentParser";
-	private static HttpClient sHttpClient;
+	private final String TAG = "M3u8ContentParser";
+	private HttpClient sHttpClient;
+	private M3u8AsyncTask mTask = null;
 
 	private static final int CONNETED_TIMEOUT = 5;
 	private static final int RETRY_TIMES = 5;
-
-	// private LogPushManager mLogPushManager;
-	// private String vid;
-	// private Context mContext;
 
 	public M3u8ContentParser(M3u8ParserListener listener, String _vid,
 			Context ctt) {
 		mListener = listener;
 		mListener.updateVideoID(_vid);
-		// vid = _vid;
+
 		if (sHttpClient == null) {
 			sHttpClient = createHttpClient();
 		}
-		// mContext = ctt;
-		// mLogPushManager = PlayerSDKProxy.getLogPushManager();
 	}
 
 	private M3u8ParserListener mListener;
@@ -89,8 +84,14 @@ public class M3u8ContentParser {
 
 	public void startParserM3u8(String url) {
 		mListener.updateVideoPlayUrl(url);
-		M3u8AsyncTask task = new M3u8AsyncTask(url);
-		task.execute();
+		mTask = new M3u8AsyncTask(url);
+		mTask.execute();
+	}
+
+	public void cancelParserM3U8() {
+		if (mTask != null && mTask.getStatus() != AsyncTask.Status.FINISHED) {
+			mTask.cancel(true);
+		}
 	}
 
 	private VDResolutionData parse(InputStream is) {

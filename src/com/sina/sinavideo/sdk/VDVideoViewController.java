@@ -145,6 +145,11 @@ public class VDVideoViewController implements OnVideoOpenedListener,
 	public VDVideoViewLayerContextData mLayerContextData = null;
 
 	/**
+	 * m3u8的数据解析类
+	 */
+	private M3u8ContentParser mParser = null;
+
+	/**
 	 * 得到外部事件处理
 	 * 
 	 * @return
@@ -722,9 +727,9 @@ public class VDVideoViewController implements OnVideoOpenedListener,
 	}
 
 	private void startM3u8ContentParser(VDVideoInfo info) {
-		M3u8ContentParser parser = new M3u8ContentParser(
-				new MyM3u8ParserListener(info), info.mVideoId, mContext);
-		parser.startParserM3u8(info.mPlayUrl);
+		mParser = new M3u8ContentParser(new MyM3u8ParserListener(info),
+				info.mVideoId, mContext);
+		mParser.startParserM3u8(info.mPlayUrl);
 	}
 
 	/**
@@ -1167,6 +1172,10 @@ public class VDVideoViewController implements OnVideoOpenedListener,
 	 * 结束
 	 */
 	public void stop() {
+		if (mParser != null) {
+			mParser.cancelParserM3U8();
+		}
+		
 		mTimeOutHandler.removeMessages(CHECK_LIVE_TIME_OUT);
 		mTimeOutHandler.removeMessages(NET_TIME_OUT);
 		mInsertADHandler.removeCallbacks(mInsertADRunnable);
